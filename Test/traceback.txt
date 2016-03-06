@@ -1,0 +1,25 @@
+﻿I'm sorry, but an uncaught exception occurred.
+
+While running game code:
+  File "game/script.rpy", line 1, in script
+    ﻿init -1 python:
+  File "game/script.rpy", line 22, in <module>
+    class Profile(store.profile):
+AttributeError: 'StoreModule' object has no attribute 'profile'
+
+-- Full Traceback ------------------------------------------------------------
+
+Full traceback:
+  File "game/script.rpy", line 1, in script
+    ﻿init -1 python:
+  File "C:\Users\Will\renpy-6.99.5-sdk\renpy\ast.py", line 797, in execute
+    renpy.python.py_exec_bytecode(self.code.bytecode, self.hide, store=self.store)
+  File "C:\Users\Will\renpy-6.99.5-sdk\renpy\python.py", line 1448, in py_exec_bytecode
+    exec bytecode in globals, locals
+  File "game/script.rpy", line 22, in <module>
+    class Profile(store.profile):
+AttributeError: 'StoreModule' object has no attribute 'profile'
+
+Windows-8-6.2.9200
+Ren'Py 6.99.5.602
+Test 0.0
