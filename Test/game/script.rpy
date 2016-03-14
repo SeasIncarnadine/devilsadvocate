@@ -36,6 +36,10 @@ label start:
 
     mentor "After some preamble, how about we try a practice cross-examination?"
 
+    $ chocolate = Evidence("Chocolate", "A bar of dark chocolate, 80% cocoa", "gui/inv_chocolate.png", None)
+
+    $ evidence.append(chocolate)
+
     mentor "Hmm..."
 
     
