@@ -22,6 +22,9 @@ init -1 python:
 
     evidence = []
     profiles = []
+    evidence_page = 0
+    profiles_page = 0
+
 
     #Tooltips:
     style.tips_top = Style(style.default)
@@ -43,26 +46,25 @@ init -1 python:
 
 
 screen inventory_button:
-    textbutton "Show Inventory" action [ Show("inventory_screen"), Hide("inventory_button")] align (.95,.04)
+    textbutton "Show Evidence" action [ Show("inventory_screen"), Hide("inventory_button")] align (.95,.04)
             
 screen inventory_screen:    
     default description_textbox = Tooltip("")
     add "gui/inventory.png" # the background
     modal True #prevent clicking on other stuff when inventory is shown
     hbox align (.95,.04) spacing 20:
-        textbutton "Close Inventory" action [ Hide("inventory_screen"), Show("inventory_button")]
-    $ x = 60 # coordinates of the top left item position
+        textbutton "Close Evidence" action [ Hide("inventory_screen"), Show("inventory_button")]
+    $ x = 54 # coordinates of the top left item position
     $ y = -32
     $ i = 0
-    $ inv_page = 0
-    $ next_inv_page = inv_page + 1            
-    if next_inv_page > int(len(evidence)/8):
-        $ next_inv_page = 0
+    $ next_evidence_page = evidence_page + 1            
+    if next_evidence_page > int(len(evidence)/10):
+        $ next_evidence_page = 0
     for item in evidence:
-        if i+1 <= (inv_page+1)*8 and i+1>inv_page*8:
-            $ x += 132
-            if i%4==0:
-                $ y += 132
+        if i+1 <= (evidence_page+1)*10 and i+1>evidence_page*10:
+            $ x += 138
+            if i%5==0:
+                $ y += 138
                 $ x = 60
             $ pic = item.image
             $ my_tooltip = "tooltip_inventory_" + pic.replace("gui/inv_", "").replace(".png", "") # we use tooltips to describe what the item does.
@@ -70,8 +72,8 @@ screen inventory_screen:
             #imagebutton idle pic hover pic xpos x ypos y action [Hide("gui_tooltip"), Show("inventory_button"), SetVariable("item", item), Hide("inventory_screen"), item.use] hovered [ Play ("sound", "sfx/click.wav"), Show("gui_tooltip", my_picture=my_tooltip, my_tt_ypos=693) ] unhovered [Hide("gui_tooltip")] at highlight_evidence
             imagebutton idle pic hover pic xpos x ypos y action [item.use] hovered [ Play ("sound", "sfx/click.wav"), description_textbox.Action(item.description)] unhovered [description_textbox.Action("")]# at highlight_evidence
         $ i += 1
-        if len(evidence)>8:
-            textbutton _("Next Page") action [SetVariable('inv_page', next_inv_page), Show("inventory_screen")] xpos .475 ypos .83
+        if len(evidence)>10:
+            textbutton _("Next Page") action [SetVariable('evidence_page', next_evidence_page), Show("inventory_screen")] xpos .75 ypos .635
     frame:
         xfill True
         yfill True

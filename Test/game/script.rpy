@@ -30,17 +30,39 @@ label start:
     show mentor
     with fade
 
-    mentor "Ok, let's take a look at your inventory."
-
     show screen inventory_button
 
-    mentor "After some preamble, how about we try a practice cross-examination?"
+    mentor "Here, have an evidence button."
 
     $ chocolate = Evidence("Chocolate", "A bar of dark chocolate, 80% cocoa", "gui/inv_chocolate.png", None)
 
     $ evidence.append(chocolate)
 
-    mentor "Hmm..."
+    $ evidence.append(chocolate)
+
+    $ evidence.append(chocolate)
+
+    $ evidence.append(chocolate)
+
+    $ evidence.append(chocolate)
+
+    $ evidence.append(chocolate)
+
+    $ evidence.append(chocolate)
+
+    $ evidence.append(chocolate)
+
+    $ evidence.append(chocolate)
+
+    $ evidence.append(chocolate)
+
+    $ evidence.append(chocolate)
+
+    mentor "I've just added some example evidence, take a look."
+
+    mentor "Ok, there isn't any more script to see!"
+
+    #Remember to clear "inventory" at end of cases!
 
     
     return
