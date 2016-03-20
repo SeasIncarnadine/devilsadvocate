@@ -40,35 +40,19 @@ label start:
 
     $ chocolate = Evidence("Chocolate", "A bar of dark chocolate, 80% cocoa", "gui/inv_chocolate.png")
 
-    $ evidence.append(chocolate)
+    $ tinymap = Evidence("Courtroom Map", "A map of the rooms immediately around where the victim's body was found.", "gui/tinymap.png", "gui/biggermap.png")
 
     $ evidence.append(chocolate)
 
-    $ evidence.append(chocolate)
-
-    $ evidence.append(chocolate)
-
-    $ evidence.append(chocolate)
-
-    $ evidence.append(chocolate)
-
-    $ evidence.append(chocolate)
-
-    $ evidence.append(chocolate)
-
-    $ evidence.append(chocolate)
-
-    $ evidence.append(chocolate)
-
-    $ evidence.append(chocolate)
-
-    $ profiles.append(chocolate)
+    $ evidence.append(tinymap)
 
     mentor "I've just added some example evidence, take a look."
 
     mentor "Ok, there isn't any more script to see!"
 
-    #Remember to clear "inventory" at end of cases!
+    # Empty evidence lists after the case:
+    $ del evidence[:] 
+    $ del profiles[:]
 
     
     return
