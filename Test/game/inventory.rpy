@@ -64,9 +64,6 @@ screen inventory_screen():
     $ x = 54 # coordinates of the top left item position
     $ y = -38
     $ i = 0
-    $ next_evidence_page = evidence_page + 1            
-    if next_evidence_page > int(len(evidence)/10):
-        $ next_evidence_page = 0
     for item in evidence:
         if i+1 <= (evidence_page+1)*10 and i+1>evidence_page*10:
             $ x += 138
@@ -80,7 +77,8 @@ screen inventory_screen():
                 add "gui/selectioncursor.png" xpos x ypos y
         $ i += 1
         if len(evidence)>10:
-            textbutton _("Next Page") action [SetVariable('evidence_page', next_evidence_page), Show("inventory_screen")] align(.95, .65)
+            textbutton _("Next Page") action [SetVariable('evidence_page', evidence_page + 1 if evidence_page + 1 <= int(len(evidence)/10) else 0), Show("inventory_screen")] align(.95, .65)
+            textbutton _("Prior Page") action [SetVariable('evidence_page', evidence_page - 1 if evidence_page > 0 else 0), Show("inventory_screen")] align(.95, .65)
     frame:
         xfill True
         yfill True
@@ -109,9 +107,6 @@ screen profiles_screen():
     $ x = 54 # coordinates of the top left item position
     $ y = -38
     $ i = 0
-    $ next_profiles_page = profiles_page + 1            
-    if next_profiles_page > int(len(profiles)/10):
-        $ next_profiles_page = 0
     for item in profiles:
         if i+1 <= (profiles_page+1)*10 and i+1>profiles_page*10:
             $ x += 138
@@ -125,7 +120,8 @@ screen profiles_screen():
                 add "gui/selectioncursor.png" xpos x ypos y
         $ i += 1
         if len(profiles)>10:
-            textbutton _("Next Page") action [SetVariable('profiles_page', next_profiles_page), Show("profiles_screen")] align(.95, .65)
+            textbutton _("Next Page") action [SetVariable('profiles_page', profiles_page + 1 if profiles_page + 1 <= int(len(profiles)/10) else 0), Show("profiles_screen")] align(.95, .65)
+            textbutton _("Prior Page") action [SetVariable('profiles_page', profiles_page - 1 if profiles_page > 0 else 0), Show("profiles_screen")] align(.95, .65)
     frame:
         xfill True
         yfill True
