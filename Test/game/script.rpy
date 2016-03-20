@@ -32,9 +32,13 @@ label start:
 
     show screen inventory_button
 
+    show screen profiles_button
+
     mentor "Here, have an evidence button."
 
-    $ chocolate = Evidence("Chocolate", "A bar of dark chocolate, 80% cocoa", "gui/inv_chocolate.png", None)
+    extend " And a profiles button of course."
+
+    $ chocolate = Evidence("Chocolate", "A bar of dark chocolate, 80% cocoa", "gui/inv_chocolate.png")
 
     $ evidence.append(chocolate)
 
@@ -57,6 +61,8 @@ label start:
     $ evidence.append(chocolate)
 
     $ evidence.append(chocolate)
+
+    $ profiles.append(chocolate)
 
     mentor "I've just added some example evidence, take a look."
 
