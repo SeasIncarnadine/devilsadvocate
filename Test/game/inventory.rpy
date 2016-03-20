@@ -127,11 +127,3 @@ screen profiles_screen():
         yfill True
         ypos 420
         text description_textbox.value color "#000000"
-
-init -1:
-    transform highlight_evidence: # too lazy to make another version of each item, we just use ATL to make hovered items super bright
-        zoom 0.5 xanchor 0.5 yanchor 0.5
-        on idle:
-            linear 0.2 alpha 1.0
-        on hover:
-            linear 0.2 alpha 2.5
