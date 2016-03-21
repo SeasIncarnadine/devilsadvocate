@@ -107,6 +107,37 @@ label cross_examination_example_4_press:
     mentor "You know. Chocolate. {i}Theobroma cacao{/i} seeds, roasted, ground, flavored, and made into bars, beverages, etc. Definitely no such thing."
     jump cross_examination_example_advice
 
+label cross_examination_example_1_present:
+
+label cross_examination_example_2_present:
+
+label cross_examination_example_3_present:
+
+    call wrong_evidence_generic
+    jump cross_examination_example_1
+
+label cross_examination_example_4_present:
+    
+    if selectedEvidence is chocolate:
+        jump cross_examination_example_success
+    else:
+        call wrong_evidence_generic
+        jump cross_examination_example_1
+
+label wrong_evidence_generic:
+
+    mentor "No, I don't think that evidence is relevant to that statment."
+    return
+
+label cross_examination_example_success:
+
+    mentor "Well done! You caught the contradiction!"
+
+    mentor "That's about all that's currently written."
+
+    mentor "Best of luck with the rest of the game!"
+
+
 
     # Empty evidence lists after the case:
     $ del evidence[:] 
