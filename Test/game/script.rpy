@@ -1,10 +1,18 @@
 ﻿init -1 python:
     strikes = 0
 
+    def talksound(event, **kwargs):
+        if event == "show":
+            renpy.music.set_volume(0.25, channel="sound")
+            renpy.music.play("sfx/blip.wav", channel="sound", loop=True)
+        elif event == "slow_done" or event == "end":
+            renpy.music.stop(channel="sound")
+            renpy.music.set_volume(1, channel="sound")
+
 # Declare characters used by this game.
-define crucius = Character('Inquisitor Crucius', color="#c8ffc8")
-define mentor = Character('Lysander', color="#c8ffc8")
-define da = Character('Sana', color="#c8ffc8")
+define crucius = Character('Inquisitor Crucius', callback=talksound, color="#c8ffc8")
+define mentor = Character('Lysander', callback=talksound, color="#c8ffc8")
+define da = Character('Sana', callback=talksound, color="#c8ffc8")
 
 image crucius = "images/inquisitor.png"
 image mentor = "images/mentor.png"
@@ -16,7 +24,8 @@ define fade = Fade(0.0, 0.0, 2.0)
 
 
 
-# The game starts here.
+
+
 label start:
 
     #play music "music/intro.ogg" fadein 1
