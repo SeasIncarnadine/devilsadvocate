@@ -35,6 +35,8 @@ label start:
 
     "{i}But now I'm about to step into the court for the first time.{/i}"
 
+    play music "music/trial.mp3" fadein 1.5
+
     scene outside
     show mentor
     with fade
@@ -59,14 +61,15 @@ label start:
 
     mentor "Now that you have some evidence, let's try a cross-examination."
 
+    play music "music/examination.mp3" fadeout 1.5 fadein 1.5
+
     scene black
     show mentor
-    with fade 
-
+    with fade
 
 label cross_examination_example_1:
 
-    $ beginCrossExamination("cross_examination_example")  
+    $ beginCrossExamination("cross_examination_example")
     $ currentCrossExaminationStatement = 1
     mentor "Cross-examinations consist of several statments."
 
@@ -89,26 +92,26 @@ label cross_examination_example_advice:
 
     $ endCrossExamination()
     mentor "When you reach the end of a cross-examination, you'll loop back to the beginning again. See if you can find a statement that contradicts something in your Evidence or Profiles."
-    jump cross_examination_example_1 
+    jump cross_examination_example_1
 
 label cross_examination_example_1_press:
 
     mentor "Well, I guess there could just be one?"
     mentor "Not sure what more you want to know about this."
-    $ beginCrossExamination("cross_examination_example")   
+    $ beginCrossExamination("cross_examination_example")
     jump cross_examination_example_2
 
 label cross_examination_example_2_press:
 
     mentor "Yes, like that!"
     mentor "Press any statement you want to know more about."
-    $ beginCrossExamination("cross_examination_example")   
+    $ beginCrossExamination("cross_examination_example")
     jump cross_examination_example_3
 
 label cross_examination_example_3_press:
 
     mentor "Basically, if you think the statment includes a {i}lie{/i}, or is otherwise in conflict with something you can {i}prove{/i} using Evidence."
-    $ beginCrossExamination("cross_examination_example")   
+    $ beginCrossExamination("cross_examination_example")
     jump cross_examination_example_4
 
 label cross_examination_example_4_press:
@@ -126,8 +129,9 @@ label cross_examination_example_3_present:
     jump cross_examination_example_1
 
 label cross_examination_example_4_present:
-    
+
     if selectedEvidence is chocolate:
+        stop music
         jump cross_examination_example_success
     else:
         call wrong_evidence_generic
@@ -140,6 +144,8 @@ label wrong_evidence_generic:
 
 label cross_examination_example_success:
 
+    play music "music/cornered.mp3"
+
     mentor "Well done! You caught the contradiction!"
 
     mentor "That's about all that's currently written."
@@ -149,8 +155,8 @@ label cross_examination_example_success:
 
 
     # Empty evidence lists after the case:
-    $ del evidence[:] 
+    $ del evidence[:]
     $ del profiles[:]
 
-    
+
     return
