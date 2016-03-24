@@ -99,25 +99,26 @@ label cross_examination_example_1_press:
     mentor "Well, I guess there could just be one?"
     mentor "Not sure what more you want to know about this."
     $ beginCrossExamination("cross_examination_example")
-    jump cross_examination_example_2
+    jump cross_examination_example_1
 
 label cross_examination_example_2_press:
 
     mentor "Yes, like that!"
     mentor "Press any statement you want to know more about."
     $ beginCrossExamination("cross_examination_example")
-    jump cross_examination_example_3
+    jump cross_examination_example_2
 
 label cross_examination_example_3_press:
 
     mentor "Basically, if you think the statment includes a {i}lie{/i}, or is otherwise in conflict with something you can {i}prove{/i} using Evidence."
     $ beginCrossExamination("cross_examination_example")
-    jump cross_examination_example_4
+    jump cross_examination_example_3
 
 label cross_examination_example_4_press:
 
     mentor "You know. Chocolate. {i}Theobroma cacao{/i} seeds, roasted, ground, flavored, and made into bars, beverages, etc. Definitely no such thing."
-    jump cross_examination_example_advice
+    $ beginCrossExamination("cross_examination_example")    
+    jump cross_examination_example_4
 
 label cross_examination_example_1_present:
 
