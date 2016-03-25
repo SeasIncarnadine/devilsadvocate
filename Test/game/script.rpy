@@ -1,15 +1,20 @@
 ﻿init -1 python:
     strikes = 0
 
+    renpy.music.register_channel("talkblips", mixer="voice", loop=True);
+    renpy.music.register_channel("shout", mixer="voice", loop=False);
+
     def talksound(event, **kwargs):
+        renpy.music.set_volume(0.25, channel="talkblips");
         if event == "show":
-            renpy.music.set_volume(0.25, channel="sound")
-            renpy.music.play("sfx/blip.wav", channel="sound", loop=True)
+            renpy.music.play("sfx/blip.wav", channel="talkblips")
         elif event == "slow_done" or event == "end":
-            renpy.music.stop(channel="sound")
-            renpy.music.set_volume(1, channel="sound")
+            renpy.music.stop(channel="talkblips")
+
+
 
 # Declare characters used by this game.
+define narrator = Character(callback=talksound, color="#c8ffc8")
 define crucius = Character('Inquisitor Crucius', callback=talksound, color="#c8ffc8")
 define mentor = Character('Lysander', callback=talksound, color="#c8ffc8")
 define da = Character('Sana', callback=talksound, color="#c8ffc8")
@@ -31,9 +36,9 @@ label start:
     #play music "music/intro.ogg" fadein 1
     scene black
 
-    "{w=1}{i}I've been training to be a DA for the past several years...{/i}"
+    narrator "{w=1}{i}I've been training to be a DA for the past several years...{/i}"
 
-    "{i}But now I'm about to step into the court for the first time.{/i}"
+    narrator "{i}But now I'm about to step into the court for the first time.{/i}"
 
     play music "music/trial.mp3" fadein 1.5
 
@@ -154,7 +159,7 @@ label wrong_evidence_generic:
 
 label cross_examination_example_success:
 
-    queue music "music/cornered.mp3"
+    play music "music/cornered.mp3"
 
     mentor "Well done! You caught the contradiction!"
 
