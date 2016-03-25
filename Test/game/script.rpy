@@ -117,7 +117,7 @@ label cross_examination_example_3_press:
 label cross_examination_example_4_press:
 
     mentor "You know. Chocolate. {i}Theobroma cacao{/i} seeds, roasted, ground, flavored, and made into bars, beverages, etc. Definitely no such thing."
-    $ beginCrossExamination("cross_examination_example")    
+    $ beginCrossExamination("cross_examination_example")
     jump cross_examination_example_4
 
 label cross_examination_example_1_present:

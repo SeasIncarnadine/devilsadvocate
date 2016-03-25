@@ -1,7 +1,7 @@
 init -1 python:
     #import renpy.store as store
-    #import renpy.exports as renpy 
-    from operator import attrgetter 
+    #import renpy.exports as renpy
+    from operator import attrgetter
 
     class Evidence():
         def __init__(self, name, description, image, clickthruimage=None):
@@ -43,7 +43,7 @@ init -1 python:
     style.tips_bottom.size=20
     style.tips_bottom.outlines=[(0, "6b7eef", 1, 1), (0, "6b7eef", 2, 2)]
     style.tips_bottom.kerning = 2
-    
+
     style.button.background=Frame("gui/frame.png",25,25)
     style.button.yminimum=52
     style.button.xminimum=52
@@ -52,8 +52,8 @@ init -1 python:
 
 screen inventory_button():
     textbutton "Evidence" action [ Show("inventory_screen"), Hide("inventory_button")] align (.95,.04)
-            
-screen inventory_screen():    
+
+screen inventory_screen():
     default description_textbox = Tooltip(selectedEvidence.description if selectedEvidence is not None else "")
     add "gui/inventory.png" # the background
     modal True #prevent clicking on other stuff when inventory is shown
@@ -71,7 +71,7 @@ screen inventory_screen():
                 $ y += 138
                 $ x = 60
             $ pic = item.image
-            $ my_tooltip = "tooltip_inventory_" + pic.replace("gui/inv_", "").replace(".png", "") 
+            $ my_tooltip = "tooltip_inventory_" + pic.replace("gui/inv_", "").replace(".png", "")
             imagebutton idle pic hover pic xpos x ypos y action [ Play ("sound", "sfx/click.wav"), description_textbox.Action(item.description), SetVariable('selectedEvidence', item)]
             if item is selectedEvidence:
                 add "gui/selectioncursor.png" xpos x ypos y
@@ -98,7 +98,7 @@ screen display_fullscreen_evidence(imagepath):
 screen profiles_button():
     textbutton "Profiles" action [ Show("profiles_screen"), Hide("profiles_button")] align (.05,.04)
 
-screen profiles_screen():    
+screen profiles_screen():
     default description_textbox = Tooltip(selectedEvidence.description if selectedEvidence is not None else "")
     add "gui/profiles.png" # the background
     modal True #prevent clicking on other stuff when inventory is shown
@@ -130,4 +130,4 @@ screen profiles_screen():
         ypos 420
         text description_textbox.value color "#000000"
     if crossExaminationInProgress:
-        textbutton "Present" action If(selectedEvidence is not None, [Function(endCrossExamination), Hide("profiles_screen"), Show("inventory_button"), Show("profiles_button"), Jump(currentCrossExaminationTag + "_" + str(currentCrossExaminationStatement) + "_present")]) align (.5,.04)
+        textbutton "Present" activate_sound "sfx/Phoenix - takethat.mp3" action If(selectedEvidence is not None, [Function(endCrossExamination), Hide("profiles_screen"), Show("inventory_button"), Show("profiles_button"), Jump(currentCrossExaminationTag + "_" + str(currentCrossExaminationStatement) + "_present")]) align (.5,.04)
