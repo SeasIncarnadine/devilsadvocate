@@ -67,9 +67,10 @@ label start:
     show mentor
     with fade
 
+    $ beginCrossExamination("cross_examination_example")
+
 label cross_examination_example_1:
 
-    $ beginCrossExamination("cross_examination_example")
     $ currentCrossExaminationStatement = 1
     mentor "Cross-examinations consist of several statments."
 
@@ -92,6 +93,7 @@ label cross_examination_example_advice:
 
     $ endCrossExamination()
     mentor "When you reach the end of a cross-examination, you'll loop back to the beginning again. See if you can find a statement that contradicts something in your Evidence or Profiles."
+    $ beginCrossExamination("cross_examination_example")
     jump cross_examination_example_1
 
 label cross_examination_example_1_press:
@@ -99,6 +101,7 @@ label cross_examination_example_1_press:
     mentor "Well, I guess there could just be one?"
     mentor "Not sure what more you want to know about this."
     $ beginCrossExamination("cross_examination_example")
+    play music "music/examination.mp3" fadeout 1.5 fadein 1.5
     jump cross_examination_example_1
 
 label cross_examination_example_2_press:
@@ -106,18 +109,21 @@ label cross_examination_example_2_press:
     mentor "Yes, like that!"
     mentor "Press any statement you want to know more about."
     $ beginCrossExamination("cross_examination_example")
+    play music "music/examination.mp3" fadeout 1.5 fadein 1.5
     jump cross_examination_example_2
 
 label cross_examination_example_3_press:
 
     mentor "Basically, if you think the statment includes a {i}lie{/i}, or is otherwise in conflict with something you can {i}prove{/i} using Evidence."
     $ beginCrossExamination("cross_examination_example")
+    play music "music/examination.mp3" fadeout 1.5 fadein 1.5
     jump cross_examination_example_3
 
 label cross_examination_example_4_press:
 
     mentor "You know. Chocolate. {i}Theobroma cacao{/i} seeds, roasted, ground, flavored, and made into bars, beverages, etc. Definitely no such thing."
     $ beginCrossExamination("cross_examination_example")
+    play music "music/examination.mp3" fadeout 1.5 fadein 1.5
     jump cross_examination_example_4
 
 label cross_examination_example_1_present:
@@ -127,15 +133,18 @@ label cross_examination_example_2_present:
 label cross_examination_example_3_present:
 
     call wrong_evidence_generic
+    $ beginCrossExamination("cross_examination_example")
+    play music "music/examination.mp3" fadeout 1.5 fadein 1.5
     jump cross_examination_example_1
 
 label cross_examination_example_4_present:
 
     if selectedEvidence is chocolate:
-        stop music
         jump cross_examination_example_success
     else:
         call wrong_evidence_generic
+        $ beginCrossExamination("cross_examination_example")
+        play music "music/examination.mp3" fadeout 1.5 fadein 1.5
         jump cross_examination_example_1
 
 label wrong_evidence_generic:
@@ -145,7 +154,7 @@ label wrong_evidence_generic:
 
 label cross_examination_example_success:
 
-    play music "music/cornered.mp3"
+    queue music "music/cornered.mp3"
 
     mentor "Well done! You caught the contradiction!"
 

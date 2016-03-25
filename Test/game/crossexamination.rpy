@@ -19,4 +19,4 @@ init -1 python:
         renpy.hide_screen("press_button")
 
 screen press_button():
-    textbutton "Press" activate_sound "sfx/Phoenix - Hold it.mp3" action [Function(endCrossExamination), Jump(currentCrossExaminationTag + "_" + str(currentCrossExaminationStatement) + "_press")] align (.5,.04)
+    textbutton "Press" action [Play("music", "sfx/Phoenix - Hold it.mp3", loop=False), Function(endCrossExamination), Jump(currentCrossExaminationTag + "_" + str(currentCrossExaminationStatement) + "_press")] align (.5,.04)
