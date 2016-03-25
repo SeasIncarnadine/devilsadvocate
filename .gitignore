@@ -4,4 +4,4 @@
 /Test/tmp
 /Test/traceback.txt
 /Test/errors.txt
-*.rpyc
+/Test/game/*.rpyc

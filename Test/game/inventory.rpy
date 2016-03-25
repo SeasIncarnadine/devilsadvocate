@@ -51,7 +51,7 @@ init -1 python:
 
 
 screen inventory_button():
-    textbutton "Evidence" action [ Show("inventory_screen"), Hide("inventory_button")] align (.95,.04)
+    textbutton "Evidence" action [ Show("inventory_screen"), Hide("inventory_button"), SetVariable('selectedEvidence', None)] align (.95,.04)
 
 screen inventory_screen():
     default description_textbox = Tooltip(selectedEvidence.description if selectedEvidence is not None else "")
@@ -96,7 +96,7 @@ screen display_fullscreen_evidence(imagepath):
     textbutton "Return" action [Hide("display_fullscreen_evidence"), Show("inventory_screen")] align (.5, .95)
 
 screen profiles_button():
-    textbutton "Profiles" action [ Show("profiles_screen"), Hide("profiles_button")] align (.05,.04)
+    textbutton "Profiles" action [ Show("profiles_screen"), Hide("profiles_button"), SetVariable('selectedEvidence', None)] align (.05,.04)
 
 screen profiles_screen():
     default description_textbox = Tooltip(selectedEvidence.description if selectedEvidence is not None else "")
