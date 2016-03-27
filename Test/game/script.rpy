@@ -4,20 +4,22 @@
     renpy.music.register_channel("talkblips", mixer="voice", loop=True);
     renpy.music.register_channel("shout", mixer="voice", loop=False);
 
-    def talksound(event, **kwargs):
-        renpy.music.set_volume(0.25, channel="talkblips");
-        if event == "show":
-            renpy.music.play("sfx/blip.wav", channel="talkblips")
-        elif event == "slow_done" or event == "end":
-            renpy.music.stop(channel="talkblips")
+    def talksound(soundfile):
+        def talkfunc(event, **kwargs):
+            renpy.music.set_volume(0.25, channel="talkblips");
+            if event == "show":
+                renpy.music.play(soundfile, channel="talkblips")
+            elif event == "slow_done" or event == "end":
+                renpy.music.stop(channel="talkblips")
+        return talkfunc
 
-
+    defaultTalksound = talksound("sfx/blip.wav")
 
 # Declare characters used by this game.
-define narrator = Character(callback=talksound, color="#c8ffc8")
-define crucius = Character('Inquisitor Crucius', callback=talksound, color="#c8ffc8")
-define mentor = Character('Lysander', callback=talksound, color="#c8ffc8")
-define da = Character('Sana', callback=talksound, color="#c8ffc8")
+define narrator = Character(callback=defaultTalksound, color="#c8ffc8")
+define crucius = Character('Inquisitor Crucius', callback=defaultTalksound, color="#c8ffc8")
+define mentor = Character('Lysander', callback=defaultTalksound, color="#c8ffc8")
+define da = Character('Sana', callback=defaultTalksound, color="#c8ffc8")
 
 image crucius = "images/inquisitor.png"
 image mentor = "images/mentor.png"
