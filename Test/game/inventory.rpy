@@ -87,7 +87,7 @@ screen inventory_screen():
     if selectedEvidence is not None and selectedEvidence.clickthruimage is not None:
         textbutton "Examine" action [Show("display_fullscreen_evidence", imagepath = selectedEvidence.clickthruimage), Hide("inventory_screen")] align (.5, .65)
     if crossExaminationInProgress:
-        textbutton "Present" action If(selectedEvidence is not None, [Stop("music"), Play("shout", "sfx/Phoenix - takethat.mp3", loop=False), Function(endCrossExamination), Hide("inventory_screen"), Show("inventory_button"), Show("profiles_button"), Jump(currentCrossExaminationTag + "_" + str(currentCrossExaminationStatement) + "_present")]) align (.5,.04)
+        textbutton "Present" action If(selectedEvidence is not None, [Stop("music"), Play("shout", "sfx/Phoenix - takethat.mp3", loop=False), Function(pauseCrossExamination), Hide("inventory_screen"), Show("inventory_button"), Show("profiles_button"), Jump("_crossExaminationPresent")]) align (.5,.04)
 
 screen display_fullscreen_evidence(imagepath):
     modal True
@@ -130,4 +130,4 @@ screen profiles_screen():
         ypos 420
         text description_textbox.value color "#000000"
     if crossExaminationInProgress:
-        textbutton "Present" action If(selectedEvidence is not None, [Stop("music"), Play("shout", "sfx/Phoenix - takethat.mp3", loop=False), Function(endCrossExamination), Hide("profiles_screen"), Show("inventory_button"), Show("profiles_button"), Jump(currentCrossExaminationTag + "_" + str(currentCrossExaminationStatement) + "_present")]) align (.5,.04)
+        textbutton "Present" action If(selectedEvidence is not None, [Stop("music"), Play("shout", "sfx/Phoenix - takethat.mp3", loop=False), Function(pauseCrossExamination), Hide("profiles_screen"), Show("inventory_button"), Show("profiles_button"), Jump("_crossExaminationPresent")]) align (.5,.04)

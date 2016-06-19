@@ -1,6 +1,8 @@
 ﻿init -1 python:
     strikes = 0
 
+    #currentCallStack = "Default text"
+
     renpy.music.register_channel("talkblips", mixer="voice", loop=True);
     renpy.music.register_channel("shout", mixer="voice", loop=False);
 
@@ -36,7 +38,91 @@ define fade = Fade(0.0, 0.0, 2.0)
 label start:
 
     #play music "music/intro.ogg" fadein 1
-    scene black
+    play music "music/trial.mp3" fadein 1.5
+
+    scene outside
+    show mentor
+    with fade
+
+    show screen inventory_button
+
+    show screen profiles_button
+
+    $ chocolate = Evidence ("Chocolate", "A bar of dark chocolate, 80% cocoa", "gui/inv_chocolate.png")
+
+    $ tinymap = Evidence("Courtroom Map", "A map of the rooms immediately around where the victim's body was found.", "gui/tinymap.png", "gui/biggermap.png")
+
+    $ evidence.append(chocolate)
+
+    $ evidence.append(tinymap)
+
+    narrator "About to call from main label."
+
+    $ currentCallStack = renpy.get_return_stack()
+
+    narrator "Call stack: [currentCallStack]"
+
+    $ beginCrossExamination("test", 3, chocolate, 2)
+
+label test_1:
+    narrator "First Statement"
+    return
+
+label test_2:
+    narrator "Second Statement"
+    return
+
+label test_3:
+    narrator "Third Statement"
+    return
+
+label test_advice:
+    narrator "this is the advice segment"
+    return
+
+label test_1_press:
+    narrator "test 1 press"
+    return
+label test_2_press:
+    narrator "test 2 press"
+    return
+label test_3_press:
+    narrator "test 3 press"
+    return
+label test_present:
+    mentor "yep"
+    mentor "okay that's the end"
+    $ del evidence[:]
+    $ del profiles[:]
+    return
+
+
+
+
+
+
+    call test1 from firstcall
+
+
+
+label test1:
+
+    $ currentCallStack = renpy.get_return_stack()
+
+    narrator "Call stack: [currentCallStack]"
+
+    call test2 from test1call
+
+label test2:
+
+    $ currentCallStack = renpy.get_return_stack()
+
+    narrator "Call stack: [currentCallStack]"
+
+    call test2 from test2call
+
+
+    return;
 
     narrator "{w=1}{i}I've been training to be a DA for the past several years...{/i}"
 
@@ -74,27 +160,37 @@ label start:
     show mentor
     with fade
 
-    $ beginCrossExamination("cross_examination_example")
+    $ setupCrossExamination("cross_examination_example")
+    #$ beginCrossExamination("cross_examination_example")
 
 label cross_examination_example_1:
 
-    $ currentCrossExaminationStatement = 1
+    #$ currentCrossExaminationStatement = 1
     mentor "Cross-examinations consist of several statments."
+    return
 
 label cross_examination_example_2:
 
-    $ currentCrossExaminationStatement = 2
+    #$ currentCrossExaminationStatement = 2
     mentor "You can press a statment if you want more information."
+    return
 
 label cross_examination_example_3:
 
-    $ currentCrossExaminationStatement = 3
+    #$ currentCrossExaminationStatement = 3
     mentor "Or you can present evidence if you think you've found a contradiction."
+    return
 
 label cross_examination_example_4:
 
-    $ currentCrossExaminationStatement = 4
+    #$ currentCrossExaminationStatement = 4
     mentor "I can firmly state that chocolate does not exist."
+    return
+
+label cross_examination_example_base:
+
+    mentor "uh... I don't think you're supposed to be here."
+    return
 
 label cross_examination_example_advice:
 
@@ -158,6 +254,10 @@ label wrong_evidence_generic:
 
     mentor "No, I don't think that evidence is relevant to that statment."
     return
+
+label return_to_cross_examination:
+    $ beginCrossExamination(currentCrossExaminationTag) # or - "begin" without setting this var? ("resumeCrossExamination")
+    play music "music/examination.mp3" fadeout 1.5 fadein 1.5
 
 label cross_examination_example_success:
 
