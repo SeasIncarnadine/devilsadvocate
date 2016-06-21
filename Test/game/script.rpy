@@ -62,6 +62,9 @@ label start:
 
     narrator "Call stack: [currentCallStack]"
 
+
+
+
     $ beginCrossExamination("test", 3, chocolate, 2)
 
 label test_1:
@@ -83,15 +86,21 @@ label test_advice:
 label test_1_press:
     narrator "test 1 press"
     return
+
 label test_2_press:
     narrator "test 2 press"
     return
+
 label test_3_press:
     narrator "test 3 press"
     return
+    
 label test_present:
     mentor "yep"
     mentor "okay that's the end"
+
+
+
     $ del evidence[:]
     $ del profiles[:]
     return

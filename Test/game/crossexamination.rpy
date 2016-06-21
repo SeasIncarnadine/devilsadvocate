@@ -9,7 +9,7 @@ init -1 python:
     crossExaminationCorrectEvidence = None
     crossExaminationCorrectStatement = 0
 
-    def beginCrossExamination(crossExaminatonTag, numStatements, correctEvidence, correctStatement, music="music/examination.mp3"):
+    def beginCrossExamination(crossExaminatonTag, numStatements, correctEvidence, correctStatement, music="music/examination.mp3", doUseGenericWrongEvidence=True):
         global crossExaminationInProgress
         crossExaminationInProgress = True
         global currentCrossExaminationTag
@@ -24,6 +24,8 @@ init -1 python:
         crossExaminationCorrectStatement = correctStatement
         global currentCrossExaminationStatement
         currentCrossExaminationStatement = 1
+        global useGenericWrongEvidence
+        useGenericWrongEvidence = doUseGenericWrongEvidence
         renpy.show_screen("press_button")
         renpy.jump("_crossExaminationSkeleton")
 
